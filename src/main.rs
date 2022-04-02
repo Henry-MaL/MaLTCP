@@ -1,7 +1,6 @@
 use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
-use std::thread;
 
 fn main() {
     // 创建TcpListener， 并监听127.0.0.1:8080
@@ -11,7 +10,7 @@ fn main() {
     for stream in listener.incoming() {
         match stream {
             // 有正确结果处理方式
-            Ok(st) =>thread::spawn(|| handle_connection(st)),
+            Ok(st) => handle_connection(st),
             // 错误继续等待
             Err(_) => continue,
         }
